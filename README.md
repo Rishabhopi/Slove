@@ -10,5 +10,5 @@
 
 <p align="center"## 𝖣𝖤𝖯𝖫𝖮𝖸 𝖳𝖮 𝖱𝖤𝖭𝖣𝖤𝖱
 
-[![DEPLOY TO RENDER](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Rishuz/Slove)
+[![DEPLOY TO RENDER](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Rishabhopi/Slove)
 
