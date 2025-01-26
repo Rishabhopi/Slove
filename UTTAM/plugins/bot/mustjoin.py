@@ -26,7 +26,7 @@ async def must_join_channel(app: Client, msg: Message):
                 link = chat_info.invite_link
             not_joined_channels.append(channel)
             main_button.append(
-                [InlineKeyboardButton(f"๏Jᴏɪɴ {channel}๏", url=link)]
+                [InlineKeyboardButton(f"๏ Jᴏɪɴ ๏", url=link)]
             )
 
     if not_joined_channels:
@@ -38,8 +38,8 @@ async def must_join_channel(app: Client, msg: Message):
                     main_button
                     + [
                         [
-                            InlineKeyboardButton("๏Jᴏɪɴ๏", url="https://t.me/ll_BOTCHAMBER_ll"),
-                            InlineKeyboardButton("๏Jᴏɪɴ๏", url="https://t.me/ur_rishu_143")
+                            InlineKeyboardButton("๏ Jᴏɪɴ ๏", url="https://t.me/ll_BOTCHAMBER_ll"),
+                            InlineKeyboardButton("๏ Jᴏɪɴ ๏", url="https://t.me/ur_rishu_143")
                         ]
                     ]
                 )
